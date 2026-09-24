@@ -97,8 +97,7 @@ def create_reservation(event_id: int, reservation: ReservationCreate, db: Sessio
     if booked >= event.capacity:
         raise HTTPException(status_code=400, detail="Event is already full")
         
-    db_reservation = Reservation.model_validate(reservation)
-    db_reservation.event_id = event_id
+    db_reservation = Reservation.model_validate(reservation, update={"event_id": event_id})
     db.add(db_reservation)
     db.commit()
     db.refresh(db_reservation)
