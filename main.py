@@ -6,6 +6,7 @@ from sqlmodel import Session, SQLModel, select
 from database import engine, get_session
 from models import Item, ItemCreate, ItemUpdate, StatusEnum
 
+
 # Create the database tables
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
